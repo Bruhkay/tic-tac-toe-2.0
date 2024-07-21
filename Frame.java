@@ -59,15 +59,15 @@ public class Frame extends JFrame {
                         if(game.pl1.doesContain(i)){
                             buttons[j][i-pattern[j][0]].setText(String.valueOf('X'));
                             buttons[j][i-pattern[j][0]].setEnabled(false);
-                            if(i==game.pl1.hand[2]){
-                                buttons[j][i-pattern[j][0]].setFont(new Font("Arial", Font.PLAIN, 36));
+                            if(i==game.pl1.hand[2] && currentPlayer !='X'){
+                                buttons[j][i-pattern[j][0]].setFont(new Font("Arial", Font.PLAIN, 40));
                             }
                         }
                         else if(game.pl2.doesContain(i)){
                             buttons[j][i-pattern[j][0]].setText(String.valueOf('O'));
                             buttons[j][i-pattern[j][0]].setEnabled(false);
-                            if(i==game.pl2.hand[2]){
-                                buttons[j][i-pattern[j][0]].setFont(new Font("Arial", Font.PLAIN, 36));
+                            if(i==game.pl2.hand[2]&& currentPlayer !='O'){
+                                buttons[j][i-pattern[j][0]].setFont(new Font("Arial", Font.PLAIN, 40));
                             }
                         }
                         else{
