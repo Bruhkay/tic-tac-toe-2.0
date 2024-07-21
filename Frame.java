@@ -34,6 +34,7 @@ public class Frame extends JFrame {
             for (int col = 0; col < 3; col++) {
                 buttons[row][col] = new JButton();
                 buttons[row][col].setFont(new Font("Arial", Font.BOLD, 60));
+                buttons[row][col].setBackground(new Color(79,110,50));
                 buttons[row][col].addActionListener(new ButtonClickListener(row, col));
                 add(buttons[row][col]);
             }
@@ -63,6 +64,8 @@ public class Frame extends JFrame {
                         if(game.pl1.doesContain(i)){
                             buttons[j][i-pattern[j][0]].setText(String.valueOf('X'));
                             buttons[j][i-pattern[j][0]].setEnabled(false);
+                            buttons[j][i-pattern[j][0]].setFont(new Font("Arial", Font.BOLD, 60));
+
                             if(i==game.pl1.hand[2] && currentPlayer !='X'){
                                 buttons[j][i-pattern[j][0]].setFont(new Font("Arial", Font.PLAIN, 40));
                             }
@@ -70,6 +73,8 @@ public class Frame extends JFrame {
                         else if(game.pl2.doesContain(i)){
                             buttons[j][i-pattern[j][0]].setText(String.valueOf('O'));
                             buttons[j][i-pattern[j][0]].setEnabled(false);
+                            buttons[j][i-pattern[j][0]].setFont(new Font("Arial", Font.BOLD, 60));
+
                             if(i==game.pl2.hand[2]&& currentPlayer !='O'){
                                 buttons[j][i-pattern[j][0]].setFont(new Font("Arial", Font.PLAIN, 40));
                             }
