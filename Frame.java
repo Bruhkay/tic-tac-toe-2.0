@@ -11,7 +11,11 @@ public class Frame extends JFrame {
     int[][] pattern ={{7,8,9}, {4,5,6}, {1,2,3}};
 
     public Frame() {
+        gameInitializer();
+    }
+    public void gameInitializer(){
         game = new Game();
+        getContentPane().removeAll();
         setTitle("Tic Tac Toe");
         setSize(500, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -87,8 +91,26 @@ public class Frame extends JFrame {
         }
         public void checkForWinner(){
             if(game.gameFinished()){
+                String title = "";
+                if(game.pl1.didFinish()){
+                    title = "Winner is Player 1!!!";
+                }
+                else{
+                    title = "Winner is Player 2!!!";
+                }
                 System.out.println("oyun bitii");
-                setVisible(false);
+
+                int cevap = JOptionPane.showConfirmDialog(
+                        null,  "Do you want to play again?", title,
+                        JOptionPane.YES_NO_OPTION
+                );
+
+                if (cevap == JOptionPane.YES_OPTION) {
+                    gameInitializer();
+                } else {
+                    System.out.println("Exiting...");
+                    System.exit(0);
+                }
             }
         }
     }
