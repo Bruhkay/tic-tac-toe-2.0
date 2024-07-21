@@ -28,7 +28,7 @@ public class Frame extends JFrame {
         game = new Game();
         getContentPane().removeAll();
         setTitle("Tic Tac Toe");
-        setSize(500, 500);
+        setSize(600, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new GridLayout(3, 3));
 
