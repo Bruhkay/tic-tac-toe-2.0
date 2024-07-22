@@ -2,10 +2,10 @@ public class Player {
     int[] hand;
 
     Player(){
-        hand = new int[3];
+        hand = new int[Frame.moveAmount];
     }
     public void addMove(int move){
-        for(int i = 2; i>0; i--){
+        for(int i = Frame.moveAmount-1; i>0; i--){
             hand[i]=hand[i-1];
         }
         hand[0]=move;
@@ -23,7 +23,7 @@ public class Player {
         return false;
     }
     public boolean doesContain(int wanted){
-        for(int i = 0; i< 3; i++){
+        for(int i = 0; i< Frame.moveAmount; i++){
             if(hand[i]==wanted){
                 return true;
             }

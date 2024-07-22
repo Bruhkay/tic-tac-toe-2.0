@@ -7,7 +7,7 @@ public class Game {
         pl2 = new Player();
     }
     public boolean gameFinished(){
-        return pl1.didFinish() || pl2.didFinish();
+        return pl1.didFinish() || pl2.didFinish() || pl1.hand.length==5 || pl2.hand.length ==5;
     }
     public void display(){
 

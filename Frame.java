@@ -6,10 +6,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Frame extends JFrame {
-    private JButton[][] buttons; // Oyun tahtası için düğmeler
-    private char currentPlayer; // Sıradaki oyuncu (X veya O)
+    private JButton[][] buttons; // for game desk, buttons
+    private char currentPlayer; // Next player (X or O)
     Game game;
-
+    public static final int moveAmount = 3; //TODO this can be shown as option at the game menu
 
     JSlider redSlider;
     JSlider greenSlider;
@@ -50,12 +50,23 @@ public class Frame extends JFrame {
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
                 buttons[row][col] = new JButton();
-                buttons[row][col].setFont(new Font("Arial", Font.BOLD, 60));
+                buttons[row][col].setFont(new Font("Arial", Font.BOLD, 70));
                 buttons[row][col].setBackground(new Color(79,110,50));
                 buttons[row][col].addActionListener(new ButtonClickListener(row, col));
                 add(buttons[row][col]);
             }
         }
+    }
+    public int buttonCounter(){
+        int count= 0;
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 3; col++) {
+                if(buttons[row][col].isEnabled()){
+                    count++;
+                }
+            }
+        }
+        return count;
     }
     private class ButtonClickListener implements ActionListener {
         private int row;
@@ -80,18 +91,18 @@ public class Frame extends JFrame {
                     if(game.pl1.doesContain(i)){
                         buttons[j][i-pattern[j][0]].setText(String.valueOf('X'));
                         buttons[j][i-pattern[j][0]].setEnabled(false);
-                        buttons[j][i-pattern[j][0]].setFont(new Font("Arial", Font.BOLD, 60));
+                        buttons[j][i-pattern[j][0]].setFont(new Font("Arial", Font.BOLD, 70));
 
-                        if(i==game.pl1.hand[2] && currentPlayer !='X'){
+                        if(i==game.pl1.hand[moveAmount-1] && currentPlayer !='X'){
                             buttons[j][i-pattern[j][0]].setFont(new Font("Arial", Font.PLAIN, 40));
                         }
                     }
                     else if(game.pl2.doesContain(i)){
                         buttons[j][i-pattern[j][0]].setText(String.valueOf('O'));
                         buttons[j][i-pattern[j][0]].setEnabled(false);
-                        buttons[j][i-pattern[j][0]].setFont(new Font("Arial", Font.BOLD, 60));
+                        buttons[j][i-pattern[j][0]].setFont(new Font("Arial", Font.BOLD, 70));
 
-                        if(i==game.pl2.hand[2]&& currentPlayer !='O'){
+                        if(i==game.pl2.hand[moveAmount-1]&& currentPlayer !='O'){
                             buttons[j][i-pattern[j][0]].setFont(new Font("Arial", Font.PLAIN, 40));
                         }
                     }
@@ -179,13 +190,16 @@ public class Frame extends JFrame {
         return slider;
     }
     public void checkForWinner(){
-        if(game.gameFinished()){
+        if(game.gameFinished() || buttonCounter()==0){
             String title = "";
             if(game.pl1.didFinish()){
                 title = "Winner is Player 1!!!";
             }
-            else{
+            else if(game.pl2.didFinish()){
                 title = "Winner is Player 2!!!";
+            }
+            else{
+                title = "Draw!!!";
             }
             System.out.println("oyun bitii");
 
