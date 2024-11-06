@@ -54,16 +54,23 @@ public class Frame extends JFrame {
     }
 
     private void initializeButtons() {
-        String greet = " 1  V  1";
+        String greet = "1V1      ";
+        
         int count= 0;
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
 
                 buttons[row][col] = new JButton();
                 buttons[row][col].setFont(new Font("Arial", Font.BOLD, 70));
-                //buttons[row][col].setBackground(new Color(red,green,blue)); this can be opened
+                buttons[row][col].setBackground(new Color(red,green,blue)); //this can be opened
                 if(greet.length()>count){
-                    buttons[row][col].setText(""+greet.charAt(count));
+                    if(row ==2 && col ==1){ //the location of button that shows movement amount
+                        buttons[row][col].setFont(new Font("Arial", Font.BOLD, 40));
+                        buttons[row][col].setText(""+moveAmount + " move");    
+                    }
+                    else{
+                        buttons[row][col].setText(""+greet.charAt(count));
+                    }
                 }
                 buttons[row][col].setFocusable(false);
                 buttons[row][col].setForeground(Color.RED);
