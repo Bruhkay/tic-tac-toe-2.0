@@ -15,13 +15,13 @@ public class Frame extends JFrame {
     JSlider greenSlider;
     JSlider blueSlider;
     int initialColor = 180;
+    boolean selectVahishingButton = true;
     int red = initialColor; int blue= initialColor; int green= initialColor;
     JSlider amountSlider;
     JMenuBar menubar = new JMenuBar();
     JMenu settings = new JMenu("Settings");
     JMenuItem setColor = new JMenuItem("Set Color");
     JMenuItem resetButton = new JMenuItem("Reset");
-
     JMenuItem setTurnAmount = new JMenuItem(("Choose movement amount"));
 
     int[][] pattern ={{7,8,9}, {4,5,6}, {1,2,3}};
@@ -123,6 +123,9 @@ public class Frame extends JFrame {
                         buttons[j][i-pattern[j][0]].setFont(new Font("Arial", Font.BOLD, 70));
 
                         if(i==game.pl1.hand[moveAmount-1] && currentPlayer !='X'){
+                            if(selectVahishingButton){
+                                buttons[j][i-pattern[j][0]].setEnabled(true);//for selecting a button which will be removed
+                            }
                             buttons[j][i-pattern[j][0]].setFont(new Font("Arial", Font.PLAIN, 40));
                         }
                     }
@@ -132,6 +135,9 @@ public class Frame extends JFrame {
                         buttons[j][i-pattern[j][0]].setFont(new Font("Arial", Font.BOLD, 70));
 
                         if(i==game.pl2.hand[moveAmount-1]&& currentPlayer !='O'){
+                            if(selectVahishingButton){
+                                buttons[j][i-pattern[j][0]].setEnabled(true);//for selecting a button which will be removed
+                            }
                             buttons[j][i-pattern[j][0]].setFont(new Font("Arial", Font.PLAIN, 40));
                         }
                     }
