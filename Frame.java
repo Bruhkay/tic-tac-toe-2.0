@@ -20,6 +20,8 @@ public class Frame extends JFrame {
     JMenuBar menubar = new JMenuBar();
     JMenu settings = new JMenu("Settings");
     JMenuItem setColor = new JMenuItem("Set Color");
+    JMenuItem resetButton = new JMenuItem("Reset");
+
     JMenuItem setTurnAmount = new JMenuItem(("Choose movement amount"));
 
     int[][] pattern ={{7,8,9}, {4,5,6}, {1,2,3}};
@@ -41,10 +43,14 @@ public class Frame extends JFrame {
         currentPlayer = 'X';
         ActionListener lislis = new colorListenere();
         ActionListener turnn = new turnAmount();
+        ActionListener resres = new resetListener();
+
         settings.add(setColor);
         settings.add(setTurnAmount);
+        settings.add(resetButton);
 
         setColor.addActionListener(lislis);
+        resetButton.addActionListener(resres);
         setTurnAmount.addActionListener(turnn);
         menubar.add(settings);
         setJMenuBar(menubar);
@@ -214,6 +220,12 @@ public class Frame extends JFrame {
             frame.setVisible(true);
         }
     }
+
+    class resetListener implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            gameInitializer();
+        }
+    }
     class mylistener implements ChangeListener {
         public void stateChanged(ChangeEvent e){
             update();
@@ -247,7 +259,7 @@ public class Frame extends JFrame {
         return slider;
     }
     public void checkForWinner(){
-        if(game.gameFinished() || buttonCounter()==0){
+        if(game.gameFinished() || buttonCounter()==0 ){
             String title = "";
             if(game.pl1.didFinish()){
                 title = "Winner is Player 1!!!";
