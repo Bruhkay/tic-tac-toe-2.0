@@ -278,12 +278,12 @@ public class Frame extends JFrame {
             }
             System.out.println("Game ended.");
 
-            int cevap = JOptionPane.showConfirmDialog(
+            int user_response = JOptionPane.showConfirmDialog(
                     null,  "Do you want to play again?", title,
                     JOptionPane.YES_NO_OPTION
             );
 
-            if (cevap == JOptionPane.YES_OPTION) {
+            if (user_response == JOptionPane.YES_OPTION) {
                 gameInitializer();
             } else {
                 System.out.println("Exiting...");
