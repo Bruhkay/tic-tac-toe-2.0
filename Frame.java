@@ -276,7 +276,7 @@ public class Frame extends JFrame {
             else{
                 title = "Draw!!!";
             }
-            System.out.println("oyun bitii");
+            System.out.println("Game ended.");
 
             int cevap = JOptionPane.showConfirmDialog(
                     null,  "Do you want to play again?", title,
